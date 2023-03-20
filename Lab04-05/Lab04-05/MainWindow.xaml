@@ -1,0 +1,355 @@
+﻿<Window x:Class="Lab04_05.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lab45="clr-namespace:Lab04_05"
+        xmlns:local="clr-namespace:Lab04_05"
+        mc:Ignorable="d" MinWidth="800" MinHeight="600" FontFamily="Segoe UI Light" Background="#77678F"
+        Title="Per Se" Topmost="True" Height="686" Width="909">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="lab45:CustomCommand.SaveCommand" Executed="SaveButton_Click"></CommandBinding>
+        <CommandBinding Command="lab45:CustomCommand.LoadCommand" Executed="LoadButton_Click"></CommandBinding>
+        <CommandBinding Command="lab45:CustomCommand.DeleteCommand" Executed="DeleteButton_Click"></CommandBinding>
+        <CommandBinding Command="lab45:CustomCommand.AddCommand" Executed="AddButton_Click"></CommandBinding>
+        <CommandBinding Command="lab45:CustomCommand.UpdateCommand" Executed="UpdateButton_Click"></CommandBinding>
+        <CommandBinding Command="lab45:CustomCommand.SearchCommand" Executed="SearchButton_Click"></CommandBinding>
+        <CommandBinding Command="lab45:CustomCommand.UndoCommand" Executed="UndoButton_Click"></CommandBinding>
+        <CommandBinding Command="lab45:CustomCommand.RedoCommand" Executed="RedoButton_Click"></CommandBinding>
+    </Window.CommandBindings>
+    <Grid Margin="0,0,0,-6">
+
+        <TabControl>
+            <TabItem Header="{DynamicResource Shop}">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF0F0F0"/>
+                        <GradientStop Color="#FFCFD1DF" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Background="LightGray">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="368*" />
+                        <ColumnDefinition Width="611*" />
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid Grid.Column="1" x:Name="ShopDataGrid" AutoGenerateColumns="False" FontFamily="Segoe UI Light" Background="#FFCFD1DF">
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Width="1*" Binding="{Binding Name}">
+                                <DataGridColumn.Header>
+                                    <TextBlock Text="{DynamicResource Name}"></TextBlock>
+                                </DataGridColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="1*" Binding="{Binding ProductTypeString}">
+                                <DataGridColumn.Header>
+                                    <TextBlock Text="{DynamicResource ProductType }"></TextBlock>
+                                </DataGridColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="1*" Binding="{Binding Cost}">
+                                <DataGridColumn.Header>
+                                    <TextBlock Text="{DynamicResource Cost }"></TextBlock>
+                                </DataGridColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTemplateColumn Width="1*">
+                                <DataGridColumn.Header>
+                                    <TextBlock Text="{DynamicResource Description }"></TextBlock>
+                                </DataGridColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextWrapping="Wrap" Text="{Binding Description}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+                            <DataGridTemplateColumn Width="1*">
+                                <DataGridColumn.Header>
+                                    <TextBlock Text="{DynamicResource Image}"></TextBlock>
+                                </DataGridColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding PhotoUrl}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+
+
+                    </DataGrid>
+
+
+                    <Grid Grid.Column="0" Background="#FFC3B3DB">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="105*" />
+                            <RowDefinition Height="487*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <TextBlock Text="{DynamicResource Filter}"
+                               TextAlignment="Center"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               FontSize="30px" FontWeight="Bold" Height="64" Width="310" Background="#FFC3B3DB" />
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1.25*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="3">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="48*" />
+                                    <RowDefinition Height="50*" />
+                                    <RowDefinition Height="45*" />
+                                </Grid.RowDefinitions>
+
+                                <Button x:Name="SearchButton" Grid.Column="1"  Command="lab45:CustomCommand.SearchCommand" Content="{DynamicResource Search}"
+                                    FontSize="30px"
+                                    Width="200px"
+                                    Height="50px"
+
+                                    FontStretch="Condensed"
+                                    FontStyle="Oblique" Grid.Row="1" Cursor="Hand"
+                                    VerticalContentAlignment="Center"  />
+                            </Grid>
+                            <Grid Grid.Row="2" Background="#FFC3B3DB">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="77*" />
+                                    <ColumnDefinition Width="225*" />
+                                    <ColumnDefinition Width="69*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40*" />
+                                    <RowDefinition Height="20*" />
+                                </Grid.RowDefinitions>
+                                <Slider x:Name="ShopCostSlider" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
+                                    Maximum="1000"
+                                    Minimum="0"
+                                    ValueChanged="CostSlider_OnValueChanged" />
+                                <TextBlock Grid.Column="1"
+                                       Grid.Row="0"
+                                       x:Name="ShopCostTextBlock" HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="25"
+                                       Text="{DynamicResource Cost}" />
+                            </Grid>
+
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="41*" />
+                                    <RowDefinition Height="74*" />
+
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Row="0">
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition Width="2*" />
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label
+
+                                    HorizontalContentAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top" VerticalContentAlignment="Center"
+
+                                    FontSize="25"
+                                    Content="{DynamicResource ProductType}" Background="#FFC3B3DB" />
+                                </Grid>
+
+                                <Grid Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+
+                                    <RadioButton x:Name="ReadyRadioButton" Grid.Row="0"
+                                             VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                             Content="{DynamicResource Ready}" FontSize="15px" />
+                                    <RadioButton x:Name="OnRequestButton" Grid.Row="1"
+                                             VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                             Content="{DynamicResource OnRequest}"  FontSize="15px" />
+                                </Grid>
+
+                            </Grid>
+
+
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60*" />
+                                    <RowDefinition Height="60*" />
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Column="1" Content="{DynamicResource Name}"
+                                   FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                                <TextBox Grid.Column="1" x:Name="ShopDescriptionTextBox" HorizontalAlignment="Center"
+                                     Grid.Row="1"
+                                     VerticalAlignment="Top" Width="200" Height="30" Background="#E5E5E5" Text="" />
+                            </Grid>
+
+                        </Grid>
+                    </Grid>
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="{DynamicResource Redactor}">
+                <Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="135*" />
+                            <ColumnDefinition Width="262*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" Background="#FFC3B3DB">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.9*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+
+                            <Grid Grid.Row="0">
+                                <StackPanel Grid.Row="0"
+                                        Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                        MinWidth="250" MinHeight="200">
+
+                                    <TextBlock FontSize="20" Text="{DynamicResource Name}" />
+                                    <TextBox x:Name="NameTextBox" Text="" />
+                                    <TextBlock FontSize="20" Text="{DynamicResource ProductType}" />
+                                    <ComboBox x:Name="TypeComboBox">
+                                        <ComboBoxItem Content="{DynamicResource Ready}" />
+                                        <ComboBoxItem x:Name="TabletItem" Content="{DynamicResource OnRequest}" />
+                                    </ComboBox>
+                                    <TextBlock FontSize="20" Text="{DynamicResource ImageUrl}" />
+                                    <Button x:Name="OpenExplorerButton" Height="20px" Width="246"
+                                        HorizontalAlignment="Left" Click="OpenExplorerButton_Click">
+                                    </Button>
+                                    <Image x:Name="ProductImage" HorizontalAlignment="Center" Margin="0 10 100 0" Width="100px"
+                                       Height="100px">
+                                    </Image>
+                                    <TextBlock FontSize="20" Text="{DynamicResource Description}" />
+                                    <TextBox x:Name="RedactorDescriptionTextBox" Text="" Height="70px" />
+                                    <TextBlock FontSize="20" Text="{DynamicResource Cost}" x:Name="RedactorCostTextBlock" />
+                                    <Slider Margin="0 10 0 0" x:Name="RedactorCostSlider" Grid.Column="1" Grid.Row="1"
+                                        VerticalAlignment="Top"
+                                        Maximum="1000"
+                                        Minimum="0"
+                                        ValueChanged="RedactorCostSlider_OnValueChanged" />
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="5*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="5*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="5*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="5*" />
+                                </Grid.RowDefinitions>
+
+                                <DockPanel HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Row="0">
+                                    <Button x:Name="AddButton"    Command="lab45:CustomCommand.AddCommand"     Width="80" Height="30" Content="{DynamicResource Add}"></Button>
+                                    <Button x:Name="ChangeButton" Command="lab45:CustomCommand.UpdateCommand"  Width="80" Height="30" Content="{DynamicResource Change}"  ></Button>
+                                    <Button x:Name="DeleteButton" Command="lab45:CustomCommand.DeleteCommand"  Width="80" Height="30" Content="{DynamicResource Delete}" ></Button>
+                                </DockPanel>
+
+                                <Button Grid.Row="2" Command="lab45:CustomCommand.UndoCommand" Content="{DynamicResource Undo}"></Button>
+
+                                <Button Grid.Row="4" Command="lab45:CustomCommand.RedoCommand" Content="{DynamicResource Redo}"></Button>
+
+                                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="6">
+                                    <Button x:Name="LoadButton" Command="lab45:CustomCommand.LoadCommand" Width="130" Height="30" Content="{DynamicResource Load }" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
+                                    <Button x:Name="SaveButton" Command="lab45:CustomCommand.SaveCommand" Width="130" Height="30" Content="{DynamicResource Save}" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
+                                </DockPanel>
+                            </Grid>
+                        </Grid>
+
+                        <DataGrid Grid.Column="1" x:Name="ProductsDataGrid" AutoGenerateColumns="False" Background="#CFD1DF">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="1*" Binding="{Binding Name}">
+                                    <DataGridColumn.Header>
+                                        <TextBlock Text="{DynamicResource Name }"></TextBlock>
+                                    </DataGridColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="1*" Binding="{Binding ProductTypeString}">
+                                    <DataGridColumn.Header>
+                                        <TextBlock Text="{DynamicResource ProductType }"></TextBlock>
+                                    </DataGridColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="1*" Binding="{Binding Cost}">
+                                    <DataGridColumn.Header>
+                                        <TextBlock Text="{DynamicResource Cost }"></TextBlock>
+                                    </DataGridColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTemplateColumn Width="1*">
+                                    <DataGridColumn.Header>
+                                        <TextBlock Text="{DynamicResource Description }"></TextBlock>
+                                    </DataGridColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap" Text="{Binding Description}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+                                <DataGridTemplateColumn Width="1*">
+                                    <DataGridColumn.Header>
+                                        <TextBlock Text="{DynamicResource Image}"></TextBlock>
+                                    </DataGridColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding PhotoUrl}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="{DynamicResource Others}">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF0F0F0"/>
+                        <GradientStop Color="#FFCFD1DF" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+
+                <Grid Background="#FFC3B3DB">
+                    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6">
+                        <Button Style="{StaticResource Purple}" x:Name="RussianButton" Click="LanguageButton_Click" Content="Русский"></Button>
+                        <Button Style="{StaticResource Purple}" x:Name="EnglishButton" Click="LanguageButton_Click" Content="English"></Button>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <ToolBar HorizontalAlignment="Left" Height="100" Margin="1073,257,0,0" VerticalAlignment="Top" Width="100"/>
+    </Grid>
+</Window>

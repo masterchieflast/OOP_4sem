@@ -1,0 +1,56 @@
+[
+  {
+    "Name": "HERDWICK LAMB WELLINGTON",
+    "PhotoUrl": "file:///D:/study/sem4/OOP/Lab04-05/Lab04-05/Assets/Food/HERDWICK LAMB WELLINGTON.jpg",
+    "Description": "The perfect twist on a classic wellington, this lamb wellington is guaranteed to impress your family and friends no matter what the occasion.",
+    "Cost": 211,
+    "Id": "00000000-0000-0000-0000-000000000000",
+    "ProductTypeString": "Ready",
+    "ProductType": 0
+  },
+  {
+    "Name": "LAMB RUMP WITH BURNT LEEK, PEA PUREE AND CRUSHED JERSEY ROYAL POTATOES",
+    "PhotoUrl": "file:///D:/study/sem4/OOP/Lab04-05/Lab04-05/Assets/Food/LAMB RUMP WITH BURNT LEEK, PEA PUREE AND CRUSHED JERSEY ROYAL POTATOES.jpg",
+    "Description": "Lighter than a typical roast, this delicious lamb recipe from The Narrow is perfect for autumn. It's easy to assemble but impressive to serve.",
+    "Cost": 355,
+    "Id": "00000000-0000-0000-0000-000000000000",
+    "ProductTypeString": "Ready",
+    "ProductType": 0
+  },
+  {
+    "Name": "ROAST POTATOES",
+    "PhotoUrl": "file:///D:/study/sem4/OOP/Lab04-05/Lab04-05/Assets/Food/ROAST POTATOES.jpg",
+    "Description": "Serves 4-6. 1 hour prep and cooking time. Serve up the best roast potatoes with our classic roast recipe that guarantees crispy edges, fluffy middles and plenty of flavour from garlic and rosemary.",
+    "Cost": 372,
+    "Id": "00000000-0000-0000-0000-000000000000",
+    "ProductTypeString": "Под заказ",
+    "ProductType": 1
+  },
+  {
+    "Name": "ROAST TURKEY WITH LEMON, PARSLEY AND GARLIC",
+    "PhotoUrl": "file:///D:/study/sem4/OOP/Lab04-05/Lab04-05/Assets/Food/ROAST TURKEY WITH LEMON, PARSLEY_AND_GARLIC.jpg",
+    "Description": "Serves 8-10. 3 hours prep and cooking time, plus resting. The ultimate Christmas recipe, this is Gordon's favourite way to roast turkey – with a savoury butter to keep the breast meat moist.",
+    "Cost": 216,
+    "Id": "00000000-0000-0000-0000-000000000000",
+    "ProductTypeString": "Готово",
+    "ProductType": 0
+  },
+  {
+    "Name": "TRADITIONAL BEEF WELLINGTON",
+    "PhotoUrl": "file:///D:/study/sem4/OOP/Lab04-05/Lab04-05/Assets/Food/TRADITIONAL_BEEF_WELLINGTON.jpg",
+    "Description": "Try this traditional Beef Wellington recipe at home, guaranteed to impress your friends and family. Get cooking!",
+    "Cost": 663,
+    "Id": "00000000-0000-0000-0000-000000000000",
+    "ProductTypeString": "Под заказ",
+    "ProductType": 1
+  },
+  {
+    "Name": "VEGAN BEET WELLINGTON",
+    "PhotoUrl": "file:///D:/study/sem4/OOP/Lab04-05/Lab04-05/Assets/Food/VEGAN_BEET_WELLINGTON.jpg",
+    "Description": "Cook up a storm and wow your friends and family with this entirely vegan take on the traditional Wellington. A suitably impressive centrepiece for dinner parties or the perfect roast dinner replacement.",
+    "Cost": 924,
+    "Id": "00000000-0000-0000-0000-000000000000",
+    "ProductTypeString": "Под заказ",
+    "ProductType": 1
+  }
+]

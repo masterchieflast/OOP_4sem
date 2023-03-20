@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows7.0</TargetFramework>
+    <RootNamespace>Lab04_05</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\icon\app.ico</ApplicationIcon>
+    <UseWindowsForms>True</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="Resource\**" />
+    <None Remove="Resource\**" />
+    <Page Remove="Resource\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\Food\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WpfCustomControlLibrary1\WpfCustomControlLibrary1.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="WpfCustomControlLibrary1">
+      <HintPath>..\WpfCustomControlLibrary1\obj\Debug\net7.0-windows\WpfCustomControlLibrary1.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
